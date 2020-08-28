@@ -1,0 +1,161 @@
+﻿<Window x:Class="DesktopApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DesktopApp"
+        xmlns:components="clr-namespace:DesktopApp.Components"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="800">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Patient Details -->
+        <ScrollViewer Grid.Row="1" Grid.Column="0">
+            <StackPanel>
+                <!-- Name -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Name"/>
+                    <TextBox Text="{Binding Path=PatientName, Mode=TwoWay}"
+                         Grid.Column="1"/>
+                </Grid>
+
+                <!-- Sex -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Sex"/>
+                    <ComboBox SelectedValue="{Binding Path=PatientSex}"
+                          ItemsSource="{Binding Source={local:EnumBindingSourceExt {x:Type local:Sex}}}" 
+                          Grid.Column="1"/>
+                </Grid>
+
+                <!-- Phone -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Phone"/>
+                    <TextBox Text="{Binding Path=PatientPhone, Mode=TwoWay}"
+                         Grid.Column="1"/>
+                </Grid>
+
+                <!-- Address -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Address"/>
+                    <TextBox Text="{Binding Path=PatientAddress, Mode=TwoWay}"
+                         Grid.Column="1"/>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+        
+        <!-- Tab Control -->
+        <TabControl Grid.Row="2" Grid.Column="0">
+            <!-- CBC -->
+            <TabItem Header="CBC">
+                <ScrollViewer>
+                    <StackPanel>
+                        <components:FormHeader/>
+                        <components:FormEntry x:Name="HaemoglobinInput" FieldString="Haemoglobin"/>
+                        <components:FormEntry x:Name="WbcInput" FieldString="WBC"/>
+                        <components:FormEntry x:Name="RbcInput" FieldString="RBC"/>
+                        <components:FormEntry x:Name="PlateletsInput" FieldString="Platelets"/>
+                        <TextBlock Text="Differential Count" FontWeight="Bold"/>
+                        <components:FormEntry x:Name="NeutrophilInput" FieldString="Neutrophil"/>
+                        <components:FormEntry x:Name="LymphocyteInput" FieldString="Lymphocyte"/>
+                        <components:FormEntry x:Name="EosinophilInput" FieldString="Eosinophil"/>
+                        <components:FormEntry x:Name="MonocyteInput" FieldString="Monocyte"/>
+                        <components:FormEntry x:Name="BasophilInput" FieldString="Basophil"/>
+
+                        <Grid Margin="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Content="Add" Grid.Column="0" Click="CBCAddButtonClicked"/>
+                            <Button Content="Clear" Grid.Column="1" Click="CBCClearButtonClicked"/>
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            
+            <!-- Tab 2 -->
+            <TabItem Header="Tab 2">
+                <ScrollViewer>
+                    <StackPanel>
+                        <components:FormHeader/>
+                        <components:FormEntry x:Name="Test1Input" FieldString="Test 1"/>
+                        <components:FormEntry x:Name="Test2Input" FieldString="Test 2"/>
+                        <components:FormEntry x:Name="Test3Input" FieldString="Test 3"/>
+                        
+                        <Grid Margin="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Content="Add" Grid.Column="0" Click="Tab2AddButtonClicked"/>
+                            <Button Content="Clear" Grid.Column="1" Click="Tab2ClearButtonClicked"/>
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            
+            <!-- Tab 3 -->
+            <TabItem Header="Tab 3">
+                <ScrollViewer>
+                    <StackPanel>
+                        <components:FormHeader/>
+                        <components:FormEntry x:Name="Test21Input" FieldString="Test21"/>
+                        <components:FormEntry FieldString="Test22"/>
+                        <components:FormEntry FieldString="Test23"/>
+                        <components:FormEntry FieldString="Test24"/>
+
+                        <Grid Margin="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Content="Add" Grid.Column="0" Click="Tab3AddButtonClicked"/>
+                            <Button Content="Clear" Grid.Column="1" Click="Tab3ClearButtonClicked"/>
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            
+        </TabControl>
+
+        <!-- Print preview -->
+        <components:PrintableControl Grid.Row="2" Grid.Column="1" x:Name="PrintPreview"/>
+
+        <!-- Final Buttons -->
+        <Button Grid.Column="0" Grid.Row="3" Margin="2" Content="New" Click="NewButtonClicked" />
+        <Button Grid.Column="1" Grid.Row="3" Margin="2" Content="Print" Click="PrintButtonClicked"/>
+    </Grid>
+</Window>
