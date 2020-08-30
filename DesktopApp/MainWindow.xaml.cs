@@ -75,7 +75,6 @@ namespace DesktopApp
         }
 
         private string m_patientRefBy;
-
         public string PatientRefBy
         {
             get { return m_patientRefBy; }
@@ -120,6 +119,16 @@ namespace DesktopApp
             {
                 item.FieldValue = null;
             }
+            RefreshPrintPreview();
+        }
+
+        //Tab 3 buttons:
+        private void Tab3ClearButtonClicked(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void Tab3AddButtonClicked(object sender, RoutedEventArgs e)
+        {
             RefreshPrintPreview();
         }
 
@@ -202,68 +211,40 @@ namespace DesktopApp
                 case Sex.Male:
                     {
                         //CBC:
-                        SetLowerLimit(HaemoglobinInput, 3);
-                        SetLowerLimit(WbcInput,         3);
-                        SetLowerLimit(RbcInput,         3);
-                        SetLowerLimit(PlateletsInput,   3);
-                        SetLowerLimit(NeutrophilInput,  3);
-                        SetLowerLimit(LymphocyteInput,  3);
-                        SetLowerLimit(EosinophilInput,  3);
-                        SetLowerLimit(MonocyteInput,    3);
-                        SetLowerLimit(BasophilInput,    3);
-
-                        SetHigherLimit(HaemoglobinInput, 4);
-                        SetHigherLimit(WbcInput,         4);
-                        SetHigherLimit(RbcInput,         4);
-                        SetHigherLimit(PlateletsInput,   4);
-                        SetHigherLimit(NeutrophilInput,  4);
-                        SetHigherLimit(LymphocyteInput,  4);
-                        SetHigherLimit(EosinophilInput,  4);
-                        SetHigherLimit(MonocyteInput,    4);
-                        SetHigherLimit(BasophilInput,    4);
+                        SetFormFieldRange(HaemoglobinInput, 3, 4);
+                        SetFormFieldRange(WbcInput,         3, 4);
+                        SetFormFieldRange(RbcInput,         3, 4);
+                        SetFormFieldRange(PlateletsInput,   3, 4);
+                        SetFormFieldRange(NeutrophilInput,  3, 4);
+                        SetFormFieldRange(LymphocyteInput,  3, 4);
+                        SetFormFieldRange(EosinophilInput,  3, 4);
+                        SetFormFieldRange(MonocyteInput,    3, 4);
+                        SetFormFieldRange(BasophilInput,    3, 4);
 
                         //Tab 2:
-                        SetLowerLimit(Test1Input, 8);
-                        SetLowerLimit(Test2Input, 8);
-                        SetLowerLimit(Test3Input, 8);
-
-                        SetHigherLimit(Test1Input, 9);
-                        SetHigherLimit(Test2Input, 9);
-                        SetHigherLimit(Test3Input, 9);
+                        SetFormFieldRange(Test1Input, 8, 9);
+                        SetFormFieldRange(Test2Input, 8, 9);
+                        SetFormFieldRange(Test3Input, 8, 9);
 
                     }
                     break;
                 case Sex.Female:
                     {
                         //CBC:
-                        SetLowerLimit(HaemoglobinInput, 4);
-                        SetLowerLimit(WbcInput,         4);
-                        SetLowerLimit(RbcInput,         4);
-                        SetLowerLimit(PlateletsInput,   4);
-                        SetLowerLimit(NeutrophilInput,  5);
-                        SetLowerLimit(LymphocyteInput,  5);
-                        SetLowerLimit(EosinophilInput,  6);
-                        SetLowerLimit(MonocyteInput,    7);
-                        SetLowerLimit(BasophilInput,    7);
-
-                        SetHigherLimit(HaemoglobinInput, 9);
-                        SetHigherLimit(WbcInput,         9);
-                        SetHigherLimit(RbcInput,         9);
-                        SetHigherLimit(PlateletsInput,   9);
-                        SetHigherLimit(NeutrophilInput,  9);
-                        SetHigherLimit(LymphocyteInput,  9);
-                        SetHigherLimit(EosinophilInput,  9);
-                        SetHigherLimit(MonocyteInput,    9);
-                        SetHigherLimit(BasophilInput,    9);
+                        SetFormFieldRange(HaemoglobinInput, 4, 9);
+                        SetFormFieldRange(WbcInput,         4, 9);
+                        SetFormFieldRange(RbcInput,         4, 9);
+                        SetFormFieldRange(PlateletsInput,   4, 9);
+                        SetFormFieldRange(NeutrophilInput,  5, 9);
+                        SetFormFieldRange(LymphocyteInput,  5, 9);
+                        SetFormFieldRange(EosinophilInput,  6, 9);
+                        SetFormFieldRange(MonocyteInput,    7, 9);
+                        SetFormFieldRange(BasophilInput,    7, 9);
 
                         //Tab 2:
-                        SetLowerLimit(Test1Input, 88);
-                        SetLowerLimit(Test2Input, 88);
-                        SetLowerLimit(Test3Input, 88);
-
-                        SetHigherLimit(Test1Input, 98);
-                        SetHigherLimit(Test2Input, 98);
-                        SetHigherLimit(Test3Input, 98);
+                       SetFormFieldRange(Test1Input, 88, 98);
+                       SetFormFieldRange(Test2Input, 88, 98);
+                       SetFormFieldRange(Test3Input, 88, 98);
 
                     }
                     break;
@@ -274,27 +255,9 @@ namespace DesktopApp
                     break;
             }
         }
-        private void SetLowerLimit(Components.FormEntry entry, float value)
+        private void SetFormFieldRange(Components.FormEntry entry, float low, float high)
         {
-            entry.Range = new Components.FormFieldRange(value, entry.Range.higherRange);
-        }
-        private void SetHigherLimit(Components.FormEntry entry, float value)
-        {
-            entry.Range = new Components.FormFieldRange(entry.Range.lowerRange, value);
-        }
-
-        private void Tab3ClearButtonClicked(object sender, RoutedEventArgs e)
-        {
-            foreach (var item in Tab2Entries)
-            {
-                item.FieldValue = null;
-            }
-            RefreshPrintPreview();
-        }
-
-        private void Tab3AddButtonClicked(object sender, RoutedEventArgs e)
-        {
-            RefreshPrintPreview();
+            entry.Range = new Components.FormFieldRange(low, high);
         }
     }
 
