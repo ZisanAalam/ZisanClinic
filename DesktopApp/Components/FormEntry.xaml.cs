@@ -34,21 +34,39 @@ namespace DesktopApp.Components
             }
         }
 
-        public float LowerRange
+        private FormFieldRange m_range;
+        public FormFieldRange Range
         {
-            get { return (float)GetValue(LowerRangeProperty); }
-            set { SetValue(LowerRangeProperty, value); }
+            get { return m_range; }
+            set 
+            { 
+                m_range = value; 
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(Range)));
+            }
         }
-        public static readonly DependencyProperty LowerRangeProperty = DependencyProperty.Register("LowerRange", typeof(float), typeof(FormEntry), new PropertyMetadata(0.0f));
 
-        public float UpperRange
+        public string Unit
         {
-            get { return (float)GetValue(UpperRangeProperty); }
-            set { SetValue(UpperRangeProperty, value); }
+            get { return (string)GetValue(UnitProperty); }
+            set { SetValue(UnitProperty, value); }
         }
-        public static readonly DependencyProperty UpperRangeProperty = DependencyProperty.Register("UpperRange", typeof(float), typeof(FormEntry), new PropertyMetadata(0.0f));
+        public static readonly DependencyProperty UnitProperty = DependencyProperty.Register("Unit", typeof(string), typeof(FormEntry), new PropertyMetadata("%"));
+
+
 
         public event PropertyChangedEventHandler PropertyChanged = (sender, e)=>{};
+    }
+
+    public struct FormFieldRange
+    {
+        public FormFieldRange(float lower, float higher)
+        {
+            this.lowerRange = lower;
+            this.higherRange = higher;
+        }
+
+        public float lowerRange;
+        public float higherRange;
     }
 
     public class FloatToStringConverter : IValueConverter
@@ -101,6 +119,20 @@ namespace DesktopApp.Components
             {
                 return Brushes.White;
             }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+    }
+    public class RangeToStringConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            FormFieldRange range = (FormFieldRange)value;
+            string output = range.lowerRange.ToString() + " - " + range.higherRange.ToString();
+            return output;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

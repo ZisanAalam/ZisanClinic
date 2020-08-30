@@ -70,6 +70,19 @@
                     <TextBox Text="{Binding Path=PatientAddress, Mode=TwoWay}"
                          Grid.Column="1"/>
                 </Grid>
+                
+                
+                <!-- Refer by -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Address"/>
+                    <TextBox Text="{Binding Path=PatientRefBy, Mode=TwoWay}"
+                         Grid.Column="1"/>
+                </Grid>
             </StackPanel>
         </ScrollViewer>
         
@@ -80,7 +93,7 @@
                 <ScrollViewer>
                     <StackPanel>
                         <components:FormHeader/>
-                        <components:FormEntry x:Name="HaemoglobinInput" FieldString="Haemoglobin"/>
+                        <components:FormEntry x:Name="HaemoglobinInput" FieldString="Haemoglobin" Unit="percentage"/>
                         <components:FormEntry x:Name="WbcInput" FieldString="WBC"/>
                         <components:FormEntry x:Name="RbcInput" FieldString="RBC"/>
                         <components:FormEntry x:Name="PlateletsInput" FieldString="Platelets"/>

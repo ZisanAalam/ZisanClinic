@@ -24,6 +24,8 @@ namespace DesktopApp
             Tab2Entries = new List<Components.FormEntry>();
             InitializeTabEntries();
             UpdateLimits();
+
+            PatientRefBy = "Dr. Prabej Kaushar";
         }
 
         private string m_patientName;
@@ -71,6 +73,19 @@ namespace DesktopApp
                 PropertyChanged(this, new PropertyChangedEventArgs(nameof(PatientAddress)));
             }
         }
+
+        private string m_patientRefBy;
+
+        public string PatientRefBy
+        {
+            get { return m_patientRefBy; }
+            set 
+            { 
+                m_patientRefBy = value; 
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(PatientRefBy)));
+            }
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
 
@@ -261,11 +276,11 @@ namespace DesktopApp
         }
         private void SetLowerLimit(Components.FormEntry entry, float value)
         {
-            entry.LowerRange = value;
+            entry.Range = new Components.FormFieldRange(value, entry.Range.higherRange);
         }
         private void SetHigherLimit(Components.FormEntry entry, float value)
         {
-            entry.UpperRange = value;
+            entry.Range = new Components.FormFieldRange(entry.Range.lowerRange, value);
         }
 
         private void Tab3ClearButtonClicked(object sender, RoutedEventArgs e)

@@ -9,6 +9,7 @@
     <UserControl.Resources>
         <local:FloatToStringConverter x:Key="FloatToStringConverter"/>
         <local:FloatToBackgroundConverter x:Key="FloatToBackgroundConverter"/>
+        <local:RangeToStringConverter x:Key="RangeToStringConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -23,7 +24,7 @@
                  Text="{Binding Path=FieldValue, Mode=TwoWay, Converter={StaticResource FloatToStringConverter}}" 
                  Background="{Binding Path=FieldValue, Converter={StaticResource FloatToBackgroundConverter}}"
                  />
-        <TextBlock Grid.Column="2" Text="{Binding Path=LowerRange}" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Column="3" Text="{Binding Path=UpperRange}" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Column="2" Text="{Binding Path=Range, Converter={StaticResource RangeToStringConverter}}" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Column="3" Text="{Binding Path=Unit}" HorizontalAlignment="Center"/>
     </Grid>
 </UserControl>

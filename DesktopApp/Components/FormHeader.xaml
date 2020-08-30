@@ -16,7 +16,7 @@
 
         <TextBlock Grid.Column="0" Text="Test" FontWeight="Bold"/>
         <TextBlock Grid.Column="1" Text="Result" FontWeight="Bold"/>
-        <TextBlock Grid.Column="2" Text="Low" HorizontalAlignment="Center" FontWeight="Bold"/>
-        <TextBlock Grid.Column="3" Text="High" HorizontalAlignment="Center" FontWeight="Bold"/>
+        <TextBlock Grid.Column="2" Text="Normal Range" HorizontalAlignment="Center" FontWeight="Bold"/>
+        <TextBlock Grid.Column="3" Text="Units" HorizontalAlignment="Center" FontWeight="Bold"/>
     </Grid>
 </UserControl>
