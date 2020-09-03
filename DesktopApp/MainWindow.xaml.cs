@@ -21,7 +21,10 @@ namespace DesktopApp
             DataContext = this;
 
             CbcEntries = new List<Components.FormEntry>();
-            Tab2Entries = new List<Components.FormEntry>();
+            CoagulationEntries = new List<Components.FormEntry>();
+            RFTEntries = new List<Components.FormEntry>();
+            LFTEntries = new List<Components.FormEntry>();
+            LipidEntries = new List<Components.FormEntry>();
             InitializeTabEntries();
             UpdateLimits();
 
@@ -32,7 +35,7 @@ namespace DesktopApp
         public string PatientName
         {
             get { return m_patientName; }
-            set 
+            set
             {
                 m_patientName = value;
                 PropertyChanged(this, new PropertyChangedEventArgs(nameof(PatientName)));
@@ -43,7 +46,7 @@ namespace DesktopApp
         public Sex PatientSex
         {
             get { return m_patientSex; }
-            set 
+            set
             {
                 m_patientSex = value;
                 PropertyChanged(this, new PropertyChangedEventArgs(nameof(PatientSex)));
@@ -56,8 +59,8 @@ namespace DesktopApp
         public string PatientPhone
         {
             get { return m_patientPhone; }
-            set 
-            { 
+            set
+            {
                 m_patientPhone = value;
                 PropertyChanged(this, new PropertyChangedEventArgs(nameof(PatientPhone)));
             }
@@ -67,8 +70,8 @@ namespace DesktopApp
         public string PatientAddress
         {
             get { return m_patientAddress; }
-            set 
-            { 
+            set
+            {
                 m_patientAddress = value;
                 PropertyChanged(this, new PropertyChangedEventArgs(nameof(PatientAddress)));
             }
@@ -78,9 +81,9 @@ namespace DesktopApp
         public string PatientRefBy
         {
             get { return m_patientRefBy; }
-            set 
-            { 
-                m_patientRefBy = value; 
+            set
+            {
+                m_patientRefBy = value;
                 PropertyChanged(this, new PropertyChangedEventArgs(nameof(PatientRefBy)));
             }
         }
@@ -91,9 +94,20 @@ namespace DesktopApp
         //=====================================================================================
 
         List<Components.FormEntry> CbcEntries;
-        List<Components.FormEntry> Tab2Entries;
-        
+        List<Components.FormEntry> CoagulationEntries;
+        List<Components.FormEntry> RFTEntries;
+        List<Components.FormEntry> LFTEntries;
+        List<Components.FormEntry> LipidEntries;
 
+
+        //Function for clear entires
+        private void ClearEntries(List<Components.FormEntry> entries)
+        {
+            foreach (var item in entries)
+            {
+                item.FieldValue = null;
+            }
+        }
         //CBC tab buttons:
         private void CBCAddButtonClicked(object sender, RoutedEventArgs e)
         {
@@ -101,42 +115,63 @@ namespace DesktopApp
         }
         private void CBCClearButtonClicked(object sender, RoutedEventArgs e)
         {
-            foreach (var item in CbcEntries)
-            {
-                item.FieldValue = null;
-            }
+            ClearEntries(CbcEntries);
             RefreshPrintPreview();
         }
 
-        //Tab 2 buttons:
-        private void Tab2AddButtonClicked(object sender, RoutedEventArgs e)
+        //Coagulation Profile buttons:
+        private void CoagulationAddButtonClicked(object sender, RoutedEventArgs e)
         {
             RefreshPrintPreview();
         }
-        private void Tab2ClearButtonClicked(object sender, RoutedEventArgs e)
+        private void CoagulationClearButtonClicked(object sender, RoutedEventArgs e)
         {
-            foreach (var item in Tab2Entries)
-            {
-                item.FieldValue = null;
-            }
+            ClearEntries(CoagulationEntries);
             RefreshPrintPreview();
         }
 
-        //Tab 3 buttons:
-        private void Tab3ClearButtonClicked(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void Tab3AddButtonClicked(object sender, RoutedEventArgs e)
+        //RFT buttons:
+        private void RFTAddButtonClicked(object sender, RoutedEventArgs e)
         {
             RefreshPrintPreview();
         }
+        private void RFTClearButtonClicked(object sender, RoutedEventArgs e)
+        {
+            ClearEntries(RFTEntries);
+            RefreshPrintPreview();
+
+        }
+
+        //LFT buttons:
+        private void LFTAddButtonClicked(object sender, RoutedEventArgs e)
+        {
+            RefreshPrintPreview();
+        }
+        private void LFTClearButtonClicked(object sender, RoutedEventArgs e)
+        {
+            ClearEntries(LFTEntries);
+            RefreshPrintPreview();
+
+        }
+
+        //Lipid Profile buttons:
+        private void LipidAddButtonClicked(object sender, RoutedEventArgs e)
+        {
+            RefreshPrintPreview();
+        }
+        private void LipidClearButtonClicked(object sender, RoutedEventArgs e)
+        {
+            ClearEntries(LipidEntries);
+            RefreshPrintPreview();
+
+        }
+
 
         //Global buttons:
         private void PrintButtonClicked(object sender, RoutedEventArgs e)
         {
             PrintDialog pDialog = new PrintDialog();
-            if(pDialog.ShowDialog() == true)
+            if (pDialog.ShowDialog() == true)
             {
                 pDialog.PrintVisual(PrintPreview.PrintableArea, "PageToPrint");
             }
@@ -149,8 +184,10 @@ namespace DesktopApp
             PatientAddress = "";
 
             foreach (var item in CbcEntries) { item.FieldValue = null; }
-            foreach (var item in Tab2Entries) { item.FieldValue = null; }
-
+            foreach (var item in CoagulationEntries) { item.FieldValue = null; }
+            foreach (var item in RFTEntries) { item.FieldValue = null; }
+            foreach (var item in LFTEntries) { item.FieldValue = null; }
+            foreach (var item in LipidEntries) { item.FieldValue = null; }
 
             RefreshPrintPreview();
         }
@@ -169,39 +206,77 @@ namespace DesktopApp
             CbcEntries.Add(EosinophilInput);
             CbcEntries.Add(MonocyteInput);
             CbcEntries.Add(BasophilInput);
+            CbcEntries.Add(ESRInput);
+            CbcEntries.Add(PCVInput);
+            CbcEntries.Add(MCVInput);
+            CbcEntries.Add(MCHInput);
+            CbcEntries.Add(MCHCInput);
 
-            //Tab 2:
-            Tab2Entries.Add(Test1Input);
-            Tab2Entries.Add(Test2Input);
-            Tab2Entries.Add(Test3Input);
+
+            //Coagulation Tab:
+            CoagulationEntries.Add(BleedingTimeInput);
+            CoagulationEntries.Add(ClottingTimeInput);
+            CoagulationEntries.Add(ProthrombinTimeInput);
+
+            //RFT Tab:
+            RFTEntries.Add(UreaInput);
+            RFTEntries.Add(CreatinineInput);
+            RFTEntries.Add(SodiumInput);
+            RFTEntries.Add(PotassiumInput);
+
+            //LFT Tab
+            LFTEntries.Add(BilirubinInput);
+            LFTEntries.Add(DirectInput);
+            LFTEntries.Add(TotalProtienInput);
+            LFTEntries.Add(AlbuminInput);
+            LFTEntries.Add(GlobulinInput);
+            LFTEntries.Add(AGRatioInput);
+            LFTEntries.Add(SGPTInput);
+            LFTEntries.Add(SGOTInput);
+            LFTEntries.Add(AlkalinePhosphataseInput);
+
+            //Lipid Profile Tab
+            LipidEntries.Add(CholesterolInput);
+            LipidEntries.Add(TriglycerideInput);
+            LipidEntries.Add(HDLInput);
+            LipidEntries.Add(LDLInput);
+            LipidEntries.Add(VLDLInput);
+
         }
+
+        private void RefreshForTab(List<Components.FormEntry> entries)
+        {
+
+            foreach (var item in entries)
+            {
+                if (item.FieldValue == null) continue;
+
+                var newEntry = new Components.PrintableEntry();
+                newEntry.Title.Text = item.FieldString;
+                newEntry.Value.Text = item.FieldValue.ToString();
+
+                PrintPreview.MainStack.Children.Add(newEntry);
+            }
+        }
+
         private void RefreshPrintPreview()
         {
             PrintPreview.MainStack.Children.Clear();
 
             //CBC:
-            foreach (var item in CbcEntries)
-            {
-                if (item.FieldValue == null) continue;
+            RefreshForTab(CbcEntries);
 
-                var newEntry = new Components.PrintableEntry();
-                newEntry.Title.Text = item.FieldString;
-                newEntry.Value.Text = item.FieldValue.ToString();
+            //Coagulation:
+            RefreshForTab(CoagulationEntries);
 
-                PrintPreview.MainStack.Children.Add(newEntry);
-            }
+            //RFT
+            RefreshForTab(RFTEntries);
 
-            //Tab 2:
-            foreach (var item in Tab2Entries)
-            {
-                if (item.FieldValue == null) continue;
+            //LFT
+            RefreshForTab(LFTEntries);
 
-                var newEntry = new Components.PrintableEntry();
-                newEntry.Title.Text = item.FieldString;
-                newEntry.Value.Text = item.FieldValue.ToString();
-
-                PrintPreview.MainStack.Children.Add(newEntry);
-            }
+            //Lipid Profile
+            RefreshForTab(LipidEntries);
         }
 
         private void UpdateLimits()
@@ -211,54 +286,76 @@ namespace DesktopApp
                 case Sex.Male:
                     {
                         //CBC:
-                        SetFormFieldRange(HaemoglobinInput, 3, 4);
-                        SetFormFieldRange(WbcInput,         3, 4);
-                        SetFormFieldRange(RbcInput,         3, 4);
-                        SetFormFieldRange(PlateletsInput,   3, 4);
-                        SetFormFieldRange(NeutrophilInput,  3, 4);
-                        SetFormFieldRange(LymphocyteInput,  3, 4);
-                        SetFormFieldRange(EosinophilInput,  3, 4);
-                        SetFormFieldRange(MonocyteInput,    3, 4);
-                        SetFormFieldRange(BasophilInput,    3, 4);
+                        SetFormFieldRange(HaemoglobinInput, 13, 18);
+                        SetFormFieldRange(ESRInput, 0, 10);
+                        SetFormFieldRange(PCVInput, 40, 54);
 
-                        //Tab 2:
-                        SetFormFieldRange(Test1Input, 8, 9);
-                        SetFormFieldRange(Test2Input, 8, 9);
-                        SetFormFieldRange(Test3Input, 8, 9);
-
+                        //RFT
+                        SetFormFieldRange(CreatinineInput, 0.8f, 1.4f);
                     }
                     break;
                 case Sex.Female:
                     {
                         //CBC:
-                        SetFormFieldRange(HaemoglobinInput, 4, 9);
-                        SetFormFieldRange(WbcInput,         4, 9);
-                        SetFormFieldRange(RbcInput,         4, 9);
-                        SetFormFieldRange(PlateletsInput,   4, 9);
-                        SetFormFieldRange(NeutrophilInput,  5, 9);
-                        SetFormFieldRange(LymphocyteInput,  5, 9);
-                        SetFormFieldRange(EosinophilInput,  6, 9);
-                        SetFormFieldRange(MonocyteInput,    7, 9);
-                        SetFormFieldRange(BasophilInput,    7, 9);
+                        SetFormFieldRange(HaemoglobinInput, 11, 16);
+                        SetFormFieldRange(ESRInput, 0, 20);
+                        SetFormFieldRange(PCVInput, 36, 46);
 
-                        //Tab 2:
-                       SetFormFieldRange(Test1Input, 88, 98);
-                       SetFormFieldRange(Test2Input, 88, 98);
-                       SetFormFieldRange(Test3Input, 88, 98);
-
+                        //RFT
+                        SetFormFieldRange(CreatinineInput, 0.8f, 1.2f);
                     }
                     break;
-                default:
-                    {
-                        
-                    }
-                    break;
+
             }
+
+            //CBC:
+            SetFormFieldRange(WbcInput, 4000, 11000);
+            SetFormFieldRange(RbcInput, 4.5f, 6.5f);
+            SetFormFieldRange(PlateletsInput, 150000, 400000);
+            SetFormFieldRange(NeutrophilInput, 40, 70);
+            SetFormFieldRange(LymphocyteInput, 21, 40);
+            SetFormFieldRange(EosinophilInput, 2, 6);
+            SetFormFieldRange(MonocyteInput, 2, 10);
+            SetFormFieldRange(BasophilInput, 0, 1);
+            SetFormFieldRange(MCVInput, 80, 100);
+            SetFormFieldRange(MCHInput, 27, 33);
+            SetFormFieldRange(MCHCInput, 33.4f, 35.5f);
+
+            //Coagulation Profile:
+            SetFormFieldRange(BleedingTimeInput, 1, 6);
+            SetFormFieldRange(ClottingTimeInput, 5, 11);
+            SetFormFieldRange(ProthrombinTimeInput, 11, 16);
+
+            //RFT
+            SetFormFieldRange(UreaInput, 15, 40);
+            SetFormFieldRange(SodiumInput, 135, 146);
+            SetFormFieldRange(PotassiumInput, 3.5f, 5.1f);
+
+            //LFT
+            SetFormFieldRange(BilirubinInput, 0.2f, 1.0f);
+            SetFormFieldRange(DirectInput, 0, 0.2f);
+            SetFormFieldRange(TotalProtienInput, 6, 8);
+            SetFormFieldRange(AlbuminInput, 4, 6);
+            SetFormFieldRange(GlobulinInput, 0, 0);
+            SetFormFieldRange(AGRatioInput, 1.66f, 1);
+            SetFormFieldRange(SGPTInput, 4, 40);
+            SetFormFieldRange(SGOTInput, 5, 45);
+            SetFormFieldRange(AlkalinePhosphataseInput, 20, 90);
+
+            //Lipid Profile
+            SetFormFieldRange(CholesterolInput, 150, 225);
+            SetFormFieldRange(TriglycerideInput, 75, 150);
+            SetFormFieldRange(HDLInput, 30, 60);
+            SetFormFieldRange(LDLInput, 80, 150);
+            SetFormFieldRange(VLDLInput, 0, 0);
+
         }
         private void SetFormFieldRange(Components.FormEntry entry, float low, float high)
         {
             entry.Range = new Components.FormFieldRange(low, high);
         }
+
+
     }
 
     public class EnumBindingSourceExt : MarkupExtension
@@ -266,7 +363,7 @@ namespace DesktopApp
         public Type EnumType { get; private set; }
         public EnumBindingSourceExt(Type enumType)
         {
-            if(enumType == null) throw new Exception("enumType cannot be null");
+            if (enumType == null) throw new Exception("enumType cannot be null");
             if (!enumType.IsEnum) throw new Exception("enumType has to be an enum");
 
             EnumType = enumType;
