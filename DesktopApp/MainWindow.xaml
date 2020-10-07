@@ -70,8 +70,8 @@
                     <TextBox Text="{Binding Path=PatientAddress, Mode=TwoWay}"
                          Grid.Column="1"/>
                 </Grid>
-                
-                
+
+
                 <!-- Refer by -->
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -79,13 +79,13 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="Address"/>
+                    <TextBlock Text="Ref. by"/>
                     <TextBox Text="{Binding Path=PatientRefBy, Mode=TwoWay}"
                          Grid.Column="1"/>
                 </Grid>
             </StackPanel>
         </ScrollViewer>
-        
+
         <!-- Tab Control -->
         <TabControl Grid.Row="2" Grid.Column="0">
             <!-- CBC -->
@@ -104,6 +104,11 @@
                         <components:FormEntry x:Name="EosinophilInput" FieldString="Eosinophil"/>
                         <components:FormEntry x:Name="MonocyteInput" FieldString="Monocyte"/>
                         <components:FormEntry x:Name="BasophilInput" FieldString="Basophil"/>
+                        <components:FormEntry x:Name="ESRInput" FieldString="E.S.R(Wintrobes Method)"/>
+                        <components:FormEntry x:Name="PCVInput" FieldString="P.C.V"/>
+                        <components:FormEntry x:Name="MCVInput" FieldString="M.C.V"/>
+                        <components:FormEntry x:Name="MCHInput" FieldString="MCH"/>
+                        <components:FormEntry x:Name="MCHCInput" FieldString="MCHC"/>
 
                         <Grid Margin="2">
                             <Grid.ColumnDefinitions>
@@ -117,38 +122,15 @@
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
-            
-            <!-- Tab 2 -->
-            <TabItem Header="Tab 2">
-                <ScrollViewer>
-                    <StackPanel>
-                        <components:FormHeader/>
-                        <components:FormEntry x:Name="Test1Input" FieldString="Test 1"/>
-                        <components:FormEntry x:Name="Test2Input" FieldString="Test 2"/>
-                        <components:FormEntry x:Name="Test3Input" FieldString="Test 3"/>
-                        
-                        <Grid Margin="2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
 
-                            <Button Content="Add" Grid.Column="0" Click="Tab2AddButtonClicked"/>
-                            <Button Content="Clear" Grid.Column="1" Click="Tab2ClearButtonClicked"/>
-                        </Grid>
-                    </StackPanel>
-                </ScrollViewer>
-            </TabItem>
-            
-            <!-- Tab 3 -->
-            <TabItem Header="Tab 3">
+            <!-- Coagulation Profile -->
+            <TabItem Header="Coagulation">
                 <ScrollViewer>
                     <StackPanel>
                         <components:FormHeader/>
-                        <components:FormEntry x:Name="Test21Input" FieldString="Test21"/>
-                        <components:FormEntry FieldString="Test22"/>
-                        <components:FormEntry FieldString="Test23"/>
-                        <components:FormEntry FieldString="Test24"/>
+                        <components:FormEntry x:Name="BleedingTimeInput" FieldString="Bleeding Time"/>
+                        <components:FormEntry x:Name="ClottingTimeInput" FieldString="Clotting Time"/>
+                        <components:FormEntry x:Name="ProthrombinTimeInput" FieldString="Prothrombin Time"/>
 
                         <Grid Margin="2">
                             <Grid.ColumnDefinitions>
@@ -156,13 +138,88 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Content="Add" Grid.Column="0" Click="Tab3AddButtonClicked"/>
-                            <Button Content="Clear" Grid.Column="1" Click="Tab3ClearButtonClicked"/>
+                            <Button Content="Add" Grid.Column="0" Click="CoagulationAddButtonClicked"/>
+                            <Button Content="Clear" Grid.Column="1" Click="CoagulationClearButtonClicked"/>
                         </Grid>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
-            
+
+            <!-- RFT -->
+            <TabItem Header="RFT">
+                <ScrollViewer>
+                    <StackPanel>
+                        <components:FormHeader/>
+                        <components:FormEntry x:Name="UreaInput" FieldString="Urea"/>
+                        <components:FormEntry x:Name="CreatinineInput" FieldString="Creatinine"/>
+                        <components:FormEntry x:Name="SodiumInput" FieldString="Sodium"/>
+                        <components:FormEntry x:Name="PotassiumInput" FieldString="Potassium"/>
+
+                        <Grid Margin="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Content="Add" Grid.Column="0" Click="RFTAddButtonClicked"/>
+                            <Button Content="Clear" Grid.Column="1" Click="RFTClearButtonClicked"/>
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- LFT -->
+            <TabItem Header="LFT">
+                <ScrollViewer>
+                    <StackPanel>
+                        <components:FormHeader/>
+                        <components:FormEntry x:Name="BilirubinInput" FieldString="Bilirubin(Total)"/>
+                        <components:FormEntry x:Name="DirectInput" FieldString="Direct"/>
+                        <components:FormEntry x:Name="TotalProtienInput" FieldString="Total Protien"/>
+                        <components:FormEntry x:Name="AlbuminInput" FieldString="Albumin"/>
+                        <components:FormEntry x:Name="GlobulinInput" FieldString="Globulin"/>
+                        <components:FormEntry x:Name="AGRatioInput" FieldString="A/G Ratio"/>
+                        <components:FormEntry x:Name="SGPTInput" FieldString="S.G.P.T"/>
+                        <components:FormEntry x:Name="SGOTInput" FieldString="S.G.O.T"/>
+                        <components:FormEntry x:Name="AlkalinePhosphataseInput" FieldString="Alkaline Phosphatase"/>
+
+                        <Grid Margin="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Content="Add" Grid.Column="0" Click="LFTAddButtonClicked"/>
+                            <Button Content="Clear" Grid.Column="1" Click="LFTClearButtonClicked"/>
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Lipid Profile -->
+            <TabItem Header="Lipid Profile">
+                <ScrollViewer>
+                    <StackPanel>
+                        <components:FormHeader/>
+                        <components:FormEntry x:Name="CholesterolInput" FieldString="Cholesterol"/>
+                        <components:FormEntry x:Name="TriglycerideInput" FieldString="Triglyceride"/>
+                        <components:FormEntry x:Name="HDLInput" FieldString="H.D.L"/>
+                        <components:FormEntry x:Name="LDLInput" FieldString="L.D.L"/>
+                        <components:FormEntry x:Name="VLDLInput" FieldString="V.L.D.L"/>
+
+                        <Grid Margin="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Content="Add" Grid.Column="0" Click="LipidAddButtonClicked"/>
+                            <Button Content="Clear" Grid.Column="1" Click="LipidClearButtonClicked"/>
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
         </TabControl>
 
         <!-- Print preview -->
