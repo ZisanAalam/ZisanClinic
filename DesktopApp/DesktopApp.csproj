@@ -59,6 +59,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Components\FormEntrySimpler.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Components\FormHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -81,6 +85,9 @@
     </Compile>
     <Compile Include="Components\FormEntry.xaml.cs">
       <DependentUpon>FormEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\FormEntrySimpler.xaml.cs">
+      <DependentUpon>FormEntrySimpler.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\FormHeader.xaml.cs">
       <DependentUpon>FormHeader.xaml</DependentUpon>

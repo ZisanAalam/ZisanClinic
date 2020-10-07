@@ -250,7 +250,6 @@ namespace DesktopApp
                     break;
                 default:
                     {
-                        
                     }
                     break;
             }
@@ -276,6 +275,4 @@ namespace DesktopApp
             return Enum.GetValues(EnumType);
         }
     }
-
-
 }
