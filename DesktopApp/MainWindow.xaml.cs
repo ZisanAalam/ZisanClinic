@@ -305,50 +305,12 @@ namespace DesktopApp
                         SetFormFieldRange(CreatinineInput, 0.8f, 1.2f);
                     }
                     break;
-
+                default:
+                    {
+                        
+                    }
+                    break;
             }
-
-            //CBC:
-            SetFormFieldRange(WbcInput, 4000, 11000);
-            SetFormFieldRange(RbcInput, 4.5f, 6.5f);
-            SetFormFieldRange(PlateletsInput, 150000, 400000);
-            SetFormFieldRange(NeutrophilInput, 40, 70);
-            SetFormFieldRange(LymphocyteInput, 21, 40);
-            SetFormFieldRange(EosinophilInput, 2, 6);
-            SetFormFieldRange(MonocyteInput, 2, 10);
-            SetFormFieldRange(BasophilInput, 0, 1);
-            SetFormFieldRange(MCVInput, 80, 100);
-            SetFormFieldRange(MCHInput, 27, 33);
-            SetFormFieldRange(MCHCInput, 33.4f, 35.5f);
-
-            //Coagulation Profile:
-            SetFormFieldRange(BleedingTimeInput, 1, 6);
-            SetFormFieldRange(ClottingTimeInput, 5, 11);
-            SetFormFieldRange(ProthrombinTimeInput, 11, 16);
-
-            //RFT
-            SetFormFieldRange(UreaInput, 15, 40);
-            SetFormFieldRange(SodiumInput, 135, 146);
-            SetFormFieldRange(PotassiumInput, 3.5f, 5.1f);
-
-            //LFT
-            SetFormFieldRange(BilirubinInput, 0.2f, 1.0f);
-            SetFormFieldRange(DirectInput, 0, 0.2f);
-            SetFormFieldRange(TotalProtienInput, 6, 8);
-            SetFormFieldRange(AlbuminInput, 4, 6);
-            SetFormFieldRange(GlobulinInput, 0, 0);
-            SetFormFieldRange(AGRatioInput, 1.66f, 1);
-            SetFormFieldRange(SGPTInput, 4, 40);
-            SetFormFieldRange(SGOTInput, 5, 45);
-            SetFormFieldRange(AlkalinePhosphataseInput, 20, 90);
-
-            //Lipid Profile
-            SetFormFieldRange(CholesterolInput, 150, 225);
-            SetFormFieldRange(TriglycerideInput, 75, 150);
-            SetFormFieldRange(HDLInput, 30, 60);
-            SetFormFieldRange(LDLInput, 80, 150);
-            SetFormFieldRange(VLDLInput, 0, 0);
-
         }
         private void SetFormFieldRange(Components.FormEntry entry, float low, float high)
         {
@@ -373,6 +335,4 @@ namespace DesktopApp
             return Enum.GetValues(EnumType);
         }
     }
-
-
 }

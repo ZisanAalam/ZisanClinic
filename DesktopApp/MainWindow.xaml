@@ -93,6 +93,7 @@
                 <ScrollViewer>
                     <StackPanel>
                         <components:FormHeader/>
+                        <components:FormEntrySimpler FieldString="Something"/>
                         <components:FormEntry x:Name="HaemoglobinInput" FieldString="Haemoglobin" Unit="percentage"/>
                         <components:FormEntry x:Name="WbcInput" FieldString="WBC"/>
                         <components:FormEntry x:Name="RbcInput" FieldString="RBC"/>
